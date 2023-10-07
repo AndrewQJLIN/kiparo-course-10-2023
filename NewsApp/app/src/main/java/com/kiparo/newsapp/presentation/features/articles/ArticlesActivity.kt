@@ -34,7 +34,7 @@ import kotlinx.coroutines.Dispatchers
 
 class ArticlesActivity : ComponentActivity() {
 
-    private val newsRepository: ArticleRepository = ArticleRepositoryImpl(
+    private val articleRepository: ArticleRepository = ArticleRepositoryImpl(
         newsApi = provideNewsApi(
             apiUrl = com.kiparo.newsapp.BuildConfig.API_URL,
             gson = provideGson()
@@ -95,7 +95,7 @@ class ArticlesActivity : ComponentActivity() {
         val loading = remember { mutableStateOf(true) }
 
         LaunchedEffect(Unit) {
-            articles.value = newsRepository.getGroupedBySection()
+            articles.value = articleRepository.getGroupedBySection()
             loading.value = false
         }
 
