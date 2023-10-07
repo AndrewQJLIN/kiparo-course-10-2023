@@ -5,6 +5,7 @@
 package com.kiparo.newsapp.presentation.features.articles
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -56,6 +57,36 @@ class ArticlesActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.e("AAA","OnStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("AAA","OnResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e("AAA","onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.e("AAA","OnStop")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.e("AAA","OnRestart")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e("AAA","OnDestroy")
     }
 
     @Composable
