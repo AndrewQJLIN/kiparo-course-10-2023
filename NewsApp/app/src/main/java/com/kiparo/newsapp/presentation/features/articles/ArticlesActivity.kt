@@ -5,6 +5,7 @@
 package com.kiparo.newsapp.presentation.features.articles
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -33,7 +34,7 @@ import kotlinx.coroutines.Dispatchers
 
 class ArticlesActivity : ComponentActivity() {
 
-    private val newsRepository: ArticleRepository = ArticleRepositoryImpl(
+    private val articleRepository: ArticleRepository = ArticleRepositoryImpl(
         newsApi = provideNewsApi(
             apiUrl = com.kiparo.newsapp.BuildConfig.API_URL,
             gson = provideGson()
@@ -58,13 +59,43 @@ class ArticlesActivity : ComponentActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.e("AAA","OnStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("AAA","OnResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e("AAA","onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.e("AAA","OnStop")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.e("AAA","OnRestart")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e("AAA","OnDestroy")
+    }
+
     @Composable
     fun ArticleScreen() {
         val articles = remember { mutableStateOf(emptyList<ArticleSection>()) }
         val loading = remember { mutableStateOf(true) }
 
         LaunchedEffect(Unit) {
-            articles.value = newsRepository.getGroupedBySection()
+            articles.value = articleRepository.getGroupedBySection()
             loading.value = false
         }
 
